@@ -12,12 +12,10 @@ const ref = {
 
 const { selector, catInfo, loader, error } = ref;
 
-loader.classList.replace('loader', 'is-hidden');
-error.classList.add('is-hidden');
-catInfo.classList.add('is-hidden');
-
 fetchBreeds()
   .then(data => {
+    loader.classList.replace('loader', 'is-hidden');
+
     const arrBreedsId = data.map(element => ({
       text: element.name,
       value: element.id,
@@ -27,10 +25,10 @@ fetchBreeds()
       select: selector,
       data: arrBreedsId,
     });
+
+    selector.addEventListener('change', onSelectBreed);
   })
   .catch(onFetchError);
-
-selector.addEventListener('change', onSelectBreed);
 
 function onSelectBreed(event) {
   loader.classList.replace('is-hidden', 'loader');
@@ -51,6 +49,8 @@ function onSelectBreed(event) {
 }
 
 function onFetchError() {
+  error.classList.remove('is-hidden');
+
   selector.classList.add('is-hidden');
   loader.classList.replace('loader', 'is-hidden');
 
