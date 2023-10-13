@@ -3,6 +3,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 
+// This is ref
 const ref = {
   selector: document.querySelector('.breed-select'),
   catInfo: document.querySelector('.cat-info'),
